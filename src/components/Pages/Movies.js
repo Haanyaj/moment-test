@@ -75,6 +75,7 @@ class Movies extends Component {
             pages: 1,
             language: "fr-FR",
         };
+        window.addEventListener('scroll', this.handleScroll, true);
 
     }
 
@@ -82,23 +83,18 @@ class Movies extends Component {
     showItems() {
         return this.state.data.map(movie => (
             <Grid item xs={12} sm={6} md={6} lg={4} key={movie.id} spacing={3} style={styles.bot} >
-                     
             <Card style={styles.card}>
             <Popup movie={movie}/>
-        
                 <CardMedia style={styles.cardMedia}
                     alt={movie.title}
                     title={movie.title}
                 >
-
                     <Typography style={styles.overlay}>
                         {movie.title}
                     </Typography>
-                    <img style={styles.bgImage} src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} />
+                    <img style={styles.bgImage} src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt={movie.title}/>
                 </CardMedia>
-            
             </Card>
-          
         </Grid>
         ))
     }

@@ -64,7 +64,7 @@ export default function CustomizedDialogs({ movie }) {
   const handleClose = () => {
     setOpen(false);
   };
-
+// Fenêtre des détails du film
   return (
     <div>
       <div variant="outlined" color="primary" onClick={handleClickOpen} style={{position: 'absolute', width: 300, height: 394,}}>
@@ -79,16 +79,15 @@ export default function CustomizedDialogs({ movie }) {
         <DialogContent dividers>
           <Typography gutterBottom>
             {"Vu: "}{movie.popularity} {" fois  "}<br/>
-            {"Note des utilisateurs: "}
+            {movie.vote_average === 0 ? "" : "Note des utilisateurs: "}
             <div style={{width: '100px'}}>
-            <CircularProgressbar value={movie.vote_average * 10} text={`${movie.vote_average}/10`} strokeWidth="3"/>
+            {movie.vote_average !== 0 ? <CircularProgressbar value={movie.vote_average * 10} text={`${movie.vote_average}/10`} strokeWidth="3"/>  : "Non noté" }
             </div>
           </Typography>
         </DialogContent>
         <DialogContent dividers>
           <Typography gutterBottom>
-            {movie.overview ? !null : "Pas de synopsis disponible pour ce film"}
-            {null ? "" : movie.overview}
+            {movie.overview === "" ? "Pas de synopsis disponible pour ce film" : movie.overview}
           </Typography>
         </DialogContent>
         <DialogActions>
