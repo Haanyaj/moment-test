@@ -78,7 +78,7 @@ export default function CustomizedDialogs({ movie }) {
         </DialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            {"Vu: "}{movie.popularity} {" fois  "}<br/>
+            {movie.popularity} {" visionnages "}<br/>
             {movie.vote_average === 0 ? "" : "Note des utilisateurs: "}
             <div style={{width: '100px'}}>
             {movie.vote_average !== 0 ? <CircularProgressbar value={movie.vote_average * 10} text={`${movie.vote_average}/10`} strokeWidth="3"/>  : "Non noté" }
