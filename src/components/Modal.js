@@ -64,7 +64,7 @@ export default function CustomizedDialogs({ movie }) {
   const handleClose = () => {
     setOpen(false);
   };
-// Fenêtre des détails du film
+// window of movies details
   return (
     <div>
       <div variant="outlined" color="primary" onClick={handleClickOpen} style={{position: 'absolute', width: 300, height: 394,}}>

@@ -75,8 +75,6 @@ class Movies extends Component {
             pages: 1,
             language: "fr-FR",
         };
-        window.addEventListener('scroll', this.handleScroll, true);
-
     }
 
     //display movies
@@ -104,7 +102,7 @@ class Movies extends Component {
         this.state.totalPages = await getPages();
     }
 
-    // Load films by page continously
+    // Load films by page continously when bottom of the page is reached
     async loadMore() {
         if (this.state.pages ===  this.state.totalPages) {
             this.setState({ hasMore: false });
@@ -114,7 +112,7 @@ class Movies extends Component {
                 const add = this.state.data;
                 const to_add = add.concat(response);
                 this.setState({ data: to_add })
-            }, 2000);
+            }, 1000);
         }
         this.state.pages += 1
     }
@@ -130,7 +128,7 @@ class Movies extends Component {
                         loadMore={this.loadMore.bind(this)}
                         hasMore={this.state.hasMore}
                         loader={<div className="loader" style={styles.loading}> <Spinner/> </div>}
-                        useWindow={false}
+                        useWindow={true}
                     >
                         <Grid container >
                             {this.showItems()}
