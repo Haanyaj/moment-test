@@ -22,7 +22,7 @@ function Copyright() {
 const useStyles = makeStyles(theme => ({
   footer: {
     textAlign: 'center',
-    padding: theme.spacing(0, 2, 3, 2),
+    padding: theme.spacing(10, 2, 10, 2),
     marginTop: 'auto',
   },
   hr: {
