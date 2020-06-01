@@ -57,7 +57,7 @@ function BaseNavBar(props) {
       <div className={classes.sectionMobile}>
       </div>
       <Typography className={classes.title} variant="h6" noWrap>
-      The Movie database
+        <img src="/images/blue.png" alt="" />
     </Typography>
       <div className={classes.sectionDesktop}>     
       </div>

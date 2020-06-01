@@ -6,10 +6,10 @@ import InfiniteScroll from "react-infinite-scroller";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Popup from '../Modal'
+import Popup from '../tools/Modal'
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import Spinner from '../Spinner'
+import Spinner from '../tools/Spinner'
 
 //Material ui styles
 const useStyles = makeStyles((theme) => ({
@@ -123,7 +123,6 @@ class Movies extends Component {
                 loader={this.getTotalPages()}
             >
                 <Container>
-
                     <InfiniteScroll
                         loadMore={this.loadMore.bind(this)}
                         hasMore={this.state.hasMore}
@@ -134,7 +133,6 @@ class Movies extends Component {
                             {this.showItems()}
                         </Grid>
                     </InfiniteScroll>
-
                 </Container>
             </div>
         );

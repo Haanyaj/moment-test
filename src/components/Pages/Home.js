@@ -6,7 +6,7 @@ import Footer from '../Footer';
 export default function Home() {
   return (
     <Page>
-      <h1 style={{textAlign: 'center'}}>Les films les plus populaires</h1>
+      <h1 style={{textAlign: 'center'}}>Films tendances</h1>
       <Movies />
       <Footer/>
     </Page>

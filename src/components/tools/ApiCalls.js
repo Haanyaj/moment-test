@@ -29,3 +29,18 @@ export async function getPages(language, page) {
 	response = await response.json()
 	return response.total_pages
 }
+
+export async function getGenres(language) {
+	const url = api_link + '/genre/movie/list';
+	const new_url = url.concat('?api_key=', api_key, '&language=', language);
+	let response = await fetch(new_url, {
+		method: 'GET',
+		headers: {
+			'Accept': 'application/json',
+			'Content-type': 'application/json'
+		}
+
+	})
+	response = await response.json()
+	return response
+}
