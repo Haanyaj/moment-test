@@ -6,31 +6,36 @@ import InfiniteScroll from "react-infinite-scroller";
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Popup from '../Modal'
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 
-
 //Material ui styles
 const useStyles = makeStyles((theme) => ({
-    root: {
-
-    },
+   
 
 }));
 
 //styles
 const styles = {
-    movieColumn: {
-        marginBottom: 40
+    root: {
+
+    },
+  
+    bot: {
+        marginBottom: 40,
     },
 
     cardMedia: {
         width: 300,
+  
     },
     card: {
         height: '427px',
         width: '300px',
-        position: 'relative'
+        position: 'relative',
+        cursor: 'pointer',
+        borderRadius: "15px",
     },
     bgImage: {
         width: '100%'
@@ -65,21 +70,25 @@ class Films extends Component {
     //display movies
     showItems() {
         return this.state.data.map(movie => (
-            <Grid item xs={12} sm={4} md={4} lg={4} key={movie.id} spacing={3} style={styles.movieColumn}>
-                <Card style={styles.card}>
-                    <CardMedia style={styles.cardMedia}
-                        alt={movie.title}
-                        title={movie.title}
-                    >
-                        <Typography style={styles.overlay}>
-                            {movie.title}
-                        </Typography>
-                        <img style={styles.bgImage} src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} />
-                    </CardMedia>
-                </Card>
-            </Grid>
+            <Grid item xs={12} sm={6} md={6} lg={4} key={movie.id} spacing={3} style={styles.bot} >
+                     
+            <Card style={styles.card}>
+            <Popup movie={movie}/>
+        
+                <CardMedia style={styles.cardMedia}
+                    alt={movie.title}
+                    title={movie.title}
+                >
 
-
+                    <Typography style={styles.overlay}>
+                        {movie.title}
+                    </Typography>
+                    <img style={styles.bgImage} src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} />
+                </CardMedia>
+            
+            </Card>
+          
+        </Grid>
         ))
     }
 
@@ -90,7 +99,7 @@ class Films extends Component {
 
     // Load films by page continously
     async loadMore() {
-        if (this.state.pages === 4 /*this.state.totalPages*/) {
+        if (this.state.pages ===  this.state.totalPages) {
             this.setState({ hasMore: false });
         } else {
             const response = await getMovies("fr-FR", this.state.pages);
@@ -104,12 +113,11 @@ class Films extends Component {
     }
 
     render() {
-        const { classes } = this.props;
         return (
             <div
                 loader={this.getTotalPages()}
             >
-                <Container className={classes.root}>
+                <Container>
 
                     <InfiniteScroll
                         loadMore={this.loadMore.bind(this)}
@@ -117,10 +125,10 @@ class Films extends Component {
                         loader={<div className="loader" style={styles.load}> Loading... </div>}
                         useWindow={false}
                     >
-                        <Grid container spacin={1} className={classes.bodyContent}>
-                            {this.showItems()}{" "}
+                        <Grid container >
+                            {this.showItems()}
                         </Grid>
-                    </InfiniteScroll>{" "}
+                    </InfiniteScroll>
 
                 </Container>
             </div>
